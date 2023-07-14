@@ -399,8 +399,8 @@ def writeMacros(page, path):
   c = template.Context(autoescape=False)
 
   files = []
-  for basename, macros in sorted(page.iteritems()):
-    macros = sorted(p for p in macros.values() if isinstance(p, Macro))
+  for basename, macros in sorted(page.items()):
+    macros = sorted(p for p in list(macros.values()) if isinstance(p, Macro))
     if not macros:
       continue
     files.append((basename, macros))
@@ -419,8 +419,8 @@ def writeProperties(page, path):
   c = template.Context(autoescape=False)
 
   files = []
-  for basename, properties in sorted(page.iteritems()):
-    properties = sorted(p for p in properties.values() if isinstance(p, Property))
+  for basename, properties in sorted(page.items()):
+    properties = sorted(p for p in list(properties.values()) if isinstance(p, Property))
     if not properties:
       continue
     files.append((basename, properties))

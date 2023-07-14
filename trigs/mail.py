@@ -6,7 +6,7 @@
 
 __author__ = 'schrepfer'
 
-import ConfigParser
+import configparser
 import email
 import os
 import re
@@ -20,10 +20,10 @@ FORMAT = {
 def ReadConfig(config_file='trigs/mail.cfg'):
   assert os.path.isfile(config_file), 'Missing file: %s' % config_file
 
-  config = ConfigParser.ConfigParser()
+  config = configparser.ConfigParser()
   config.read(config_file)
 
-  for section, options in FORMAT.iteritems():
+  for section, options in FORMAT.items():
     assert config.has_section(section), 'Missing section: %s' % section
     for option in options:
       assert config.has_option(section, option), 'Missing option: %s > %s' % (section, option)

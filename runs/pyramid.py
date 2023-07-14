@@ -1,6 +1,6 @@
 # vim: ft=python
 
-from align import *
+from .align import *
 
 FILE = [
   {

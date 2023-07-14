@@ -28,20 +28,20 @@ import sys
 import types
 
 def fatal(message):
-  print >> sys.stderr, message
+  print(message, file=sys.stderr)
   sys.exit(1)
 
 def loadFile(filename):
   data = []
   localscope = {}
   try:
-    execfile(filename, localscope)
-  except StandardError:
+    exec(compile(open(filename, "rb").read(), filename, 'exec'), localscope)
+  except Exception:
     fatal('Could not load file: %s' % filename)
   if 'FILE' not in localscope:
     fatal('Could not find FILE in: %s' % filename)
   data = localscope['FILE']
-  if type(data) != types.ListType:
+  if type(data) != list:
     fatal('FILE must be a ListType')
   for key in ('path', 'commands', 'in', 'out'):
     if key in data:
@@ -79,21 +79,21 @@ def main(unused_args):
           if key in lineInOne:
             if key in lineInTwo:
               if lineInOne[key] != lineInTwo[key]:
-                print '%s:' % lineInOne['announce']
-                print '< %4d: %12s: %s' % (i, key, lineInOne[key])
-                print '> %4d: %12s: %s' % (j, key, lineInTwo[key])
-                print
+                print('%s:' % lineInOne['announce'])
+                print('< %4d: %12s: %s' % (i, key, lineInOne[key]))
+                print('> %4d: %12s: %s' % (j, key, lineInTwo[key]))
+                print()
             else:
-              print '%s:' % lineInOne['announce']
-              print '< %4d: %12s: %s' % (i, key, lineInOne[key])
-              print '> %4d:' % j
-              print
+              print('%s:' % lineInOne['announce'])
+              print('< %4d: %12s: %s' % (i, key, lineInOne[key]))
+              print('> %4d:' % j)
+              print()
           else:
             if key in lineInTwo:
-              print '%s:' % lineInOne['announce']
-              print '< %4d:' % i
-              print '> %4d: %12s: %s' % (j, key, lineInTwo[key])
-              print
+              print('%s:' % lineInOne['announce'])
+              print('< %4d:' % i)
+              print('> %4d: %12s: %s' % (j, key, lineInTwo[key]))
+              print()
 
 if __name__ == '__main__':
   main(sys.argv)

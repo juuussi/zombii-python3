@@ -182,19 +182,19 @@ def checkSkips(data):
     line += 1
     if 'skip' in curr and curr['skip'] > 0 and 'target' not in curr:
       if line + curr['skip'] > len(data):
-        print 'Skip of %d on line %d is longer than the file.' % (curr['skip'], line)
-        print
+        print('Skip of %d on line %d is longer than the file.' % (curr['skip'], line))
+        print()
         errors = True
         continue
       skipTo = data[line - 1 + curr['skip']]
       if 'announce' not in curr or 'announce' not in skipTo or 'target' in skipTo:
         continue
       if getPrefix(curr['announce']) != getPrefix(skipTo['announce']):
-        print 'Skip of %d on line %d does not match:' % (curr['skip'], line)
-        print
-        print '  %3d: %s' % (line, curr['announce'])
-        print '  %3d: %s' % (line + curr['skip'], skipTo['announce'])
-        print
+        print('Skip of %d on line %d does not match:' % (curr['skip'], line))
+        print()
+        print('  %3d: %s' % (line, curr['announce']))
+        print('  %3d: %s' % (line + curr['skip'], skipTo['announce']))
+        print()
         errors = True
         continue
   return not errors
@@ -220,17 +220,17 @@ def suggestSkips(data):
       if getPrefix(curr['announce']) == getPrefix(other['announce']) and 'target' not in curr and \
           'target' not in other and ('skip' not in curr or curr['skip'] != -1):
         if 'skip' not in curr:
-          print "%d can skip %d to %d" % (i, j - i, j)
-          print
-          print "  %3d: %s" % (i, curr['announce'])
-          print "  %3d: %s" % (j, other['announce'])
-          print
+          print("%d can skip %d to %d" % (i, j - i, j))
+          print()
+          print("  %3d: %s" % (i, curr['announce']))
+          print("  %3d: %s" % (j, other['announce']))
+          print()
         elif curr['skip'] > j - i:
-          print '%d currently skips %d but should maybe skip %d' % (i, curr['skip'], j - i)
-          print
-          print "  %3d: %s" % (i, curr['announce'])
-          print "  %3d: %s" % (j, other['announce'])
-          print
+          print('%d currently skips %d but should maybe skip %d' % (i, curr['skip'], j - i))
+          print()
+          print("  %3d: %s" % (i, curr['announce']))
+          print("  %3d: %s" % (j, other['announce']))
+          print()
         break
 
 def dumpZmud(data, field=None):
@@ -248,11 +248,11 @@ def dumpZmud(data, field=None):
       value = curr[key]
       if not value or (key == 'skip' and value == -1):
         continue
-      if type(value) is types.ListType:
+      if type(value) is list:
         value = ';'.join(value)
       output.append('#var %s {%s}' % (key, value))
     if output:
-      print ';'.join(output)
+      print(';'.join(output))
 
 def dumpText(data, field=None, summary=False):
   """Dump the data to a Text format.
@@ -271,24 +271,24 @@ def dumpText(data, field=None, summary=False):
         value = curr[field]
       else:
         value = ''
-      if type(value) is types.ListType:
-        print '%5d: %s' % (i, ';'.join(value))
+      if type(value) is list:
+        print('%5d: %s' % (i, ';'.join(value)))
       else:
-        print '%5d: %s' % (i, value)
+        print('%5d: %s' % (i, value))
     elif summary:
       if 'summary' in curr and curr['summary'] and 'announce' in curr:
-        print i, curr['announce']
+        print(i, curr['announce'])
     else:
       if not first:
-        print DUMP_SEPARATOR
+        print(DUMP_SEPARATOR)
       for key in KEY_ORDER:
         if key not in curr:
           continue
         value = curr[key]
-        if type(value) is types.ListType:
-          print '%16s = %s' % (key, ';'.join(value))
+        if type(value) is list:
+          print('%16s = %s' % (key, ';'.join(value)))
         else:
-          print '%16s = %s' % (key, value)
+          print('%16s = %s' % (key, value))
       first = False
 
 
@@ -299,25 +299,25 @@ def dumpPython(data, field=None):
     data: List of dictionaries.
     field: String name of specific field to dump.
   """
-  print '# vim: ft=python'
+  print('# vim: ft=python')
   if field:
-    print '# %s' % field
-  print
-  print 'FILE = [ # len() = %d' % len(data)
+    print('# %s' % field)
+  print()
+  print('FILE = [ # len() = %d' % len(data))
   for curr in data:
     if field:
-      print '  %s,' % (repr(curr[field]) if field in curr else None)
+      print('  %s,' % (repr(curr[field]) if field in curr else None))
     else:
-      print '  {'
+      print('  {')
       for key in KEY_ORDER:
         if key not in curr:
           continue
         value = curr[key]
-        if type(value) == types.ListType:
+        if type(value) == list:
           value = ';'.join(value)
-        print '    %s: %s,' % (repr(key), repr(value))
-      print '  },'
-  print '  ]'
+        print('    %s: %s,' % (repr(key), repr(value)))
+      print('  },')
+  print('  ]')
 
 
 def dumpHtml(data, field=None):
@@ -327,7 +327,7 @@ def dumpHtml(data, field=None):
     data: List of dictionaries.
     field: String name of specific field to dump.
   """
-  print """
+  print("""
 <html>
   <head>
     <title>Dump</title>
@@ -376,12 +376,12 @@ def dumpHtml(data, field=None):
     </style>
   </head>
   <body>
-  """
+  """)
   output = []
   for key in DUMP_SECTIONS:
     output.append('<span class="%s">%s</span>' % (key, key))
-  print '    <div>%s</div>' % '<span class="separator">--</span>'.join(output)
-  print '    <hr/>'
+  print('    <div>%s</div>' % '<span class="separator">--</span>'.join(output))
+  print('    <hr/>')
   for curr in getFixedData(data):
     output = []
     skipped = 0
@@ -391,21 +391,21 @@ def dumpHtml(data, field=None):
         if not value or (key == 'skip' and value == -1):
           skipped += 1
           continue
-        for unused_i in xrange(skipped):
+        for unused_i in range(skipped):
           output.append('')
           skipped = 0
-        if type(value) is types.ListType:
+        if type(value) is list:
           value = '<span class="semicolon">;</span>'.join(value)
         output.append('<span class="%s">%s</span>' % (key, value))
       else:
         skipped += 1
     if output:
-      print '    <div>%s</div>' % '<span class="separator">--</span>'.join(output)
+      print('    <div>%s</div>' % '<span class="separator">--</span>'.join(output))
 
-  print """
+  print("""
   </body>
 </html>
-  """
+  """)
 
 def dump(data, field=None):
   """Dump the data to the default format.
@@ -423,16 +423,16 @@ def dump(data, field=None):
         if not value or (key == 'skip' and value == -1):
           skipped += 1
           continue
-        for unused_i in xrange(skipped):
+        for unused_i in range(skipped):
           output.append('')
           skipped = 0
-        if type(value) is types.ListType:
+        if type(value) is list:
           value = ';'.join(value)
         output.append('%s' % value)
       else:
         skipped += 1
     if output:
-      print DUMP_SEPARATOR.join(output)
+      print(DUMP_SEPARATOR.join(output))
 
 
 def main():
@@ -511,7 +511,7 @@ def main():
       data[key] = [x for x in data[key].split(';') if x]
   else:
     prevSkip = 0
-    for line in sys.stdin.xreadlines():
+    for line in sys.stdin:
       curr = dirDict(line)
       if 'skip' in curr:
         currSkip = curr['skip']

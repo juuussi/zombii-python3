@@ -34,7 +34,7 @@ def getDirectionAbbreviation(direction):
     The abbreviation for the given direction.
   """
   global ABBREVIATION
-  if ABBREVIATION.has_key(direction):
+  if direction in ABBREVIATION:
     return ABBREVIATION[direction]
   return direction
 
@@ -75,7 +75,7 @@ def parseLogFile(logFile, reMovement, reTarget, reStart=None, maxCount=20,
   currentCommands = []
 
   f = open(logFile, 'r')
-  for line in f.xreadlines():
+  for line in f:
 
     match = reMovement.match(line)
     if match:
@@ -104,9 +104,9 @@ def parseLogFile(logFile, reMovement, reTarget, reStart=None, maxCount=20,
       appendCommands(currentCommands, previousDirection, previousDirectionCount,
           maxCount=maxCount)
       if len(currentCommands):
-        print(separator.join(currentCommands) + ' > ' + target)
+        print((separator.join(currentCommands) + ' > ' + target))
       else:
-        print('(same room)' + ' > ' + target)
+        print(('(same room)' + ' > ' + target))
       currentCommands = []
       previousDirection = ''
       previousDirectionCount = 0
@@ -117,7 +117,7 @@ def parseLogFile(logFile, reMovement, reTarget, reStart=None, maxCount=20,
         appendCommands(currentCommands, previousDirection,
             previousDirectionCount, maxCount=maxCount)
         if len(currentCommands):
-          print(separator.join(currentCommands) + ' > START')
+          print((separator.join(currentCommands) + ' > START'))
         currentCommands = []
         previousDirection = ''
         previousDirectionCount = 0

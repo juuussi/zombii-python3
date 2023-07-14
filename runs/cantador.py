@@ -1,37 +1,38 @@
 # vim: syn=python
 
-import ancient_forest
-reload(ancient_forest)
+from . import ancient_forest
+import importlib
+importlib.reload(ancient_forest)
 
-import black_mines
-reload(black_mines)
+from . import black_mines
+importlib.reload(black_mines)
 
-import dream
-reload(dream)
+from . import dream
+importlib.reload(dream)
 
-import fireplane
-reload(fireplane)
+from . import fireplane
+importlib.reload(fireplane)
 
-import grimhildr
-reload(grimhildr)
+from . import grimhildr
+importlib.reload(grimhildr)
 
-import kriesha
-reload(kriesha)
+from . import kriesha
+importlib.reload(kriesha)
 
-import prison
-reload(prison)
+from . import prison
+importlib.reload(prison)
 
-import ravenkall_crossing
-reload(ravenkall_crossing)
+from . import ravenkall_crossing
+importlib.reload(ravenkall_crossing)
 
-import serpent_lake
-reload(serpent_lake)
+from . import serpent_lake
+importlib.reload(serpent_lake)
 
-import stonemen
-reload(stonemen)
+from . import stonemen
+importlib.reload(stonemen)
 
-import wolves
-reload(wolves)
+from . import wolves
+importlib.reload(wolves)
 
 
 SKIPS = (

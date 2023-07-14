@@ -205,7 +205,7 @@ class EffectGroup(object):
 
   @property
   def effect(self):
-    for key, effect in self._effects.iteritems():
+    for key, effect in self._effects.items():
       if effect.count:
         return effect
     return None
@@ -292,19 +292,19 @@ class Effects(object):
 
   def copy(self):
     effects = Effects()
-    for effect_group in self._effect_groups.values():
+    for effect_group in list(self._effect_groups.values()):
       effects.addGroup(effect_group.copy())
-    for effect in self._effects.values():
+    for effect in list(self._effects.values()):
       effects.add(effect.copy())
     return effects
 
   def reset(self):
     """Reset all of the effects."""
-    for effect in self._effects.values():
+    for effect in list(self._effects.values()):
       effect.reset()
 
   def __iter__(self):
-    return self._effects.iteritems()
+    return iter(self._effects.items())
 
   def addGroup(self, effect_group):
     """Add an effect group.
@@ -356,7 +356,7 @@ class Effects(object):
     """
     if key in self._effects:
       del self._effects[key]
-      for effect_group in self._effect_groups.values():
+      for effect_group in list(self._effect_groups.values()):
         effect_group.remove(key)
 
   def on(self, key, quiet=False):

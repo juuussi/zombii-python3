@@ -54,7 +54,7 @@ def main():
     addCombo(getFormattedCombo(500-i))
 
   for combo in combos:
-    print combo
+    print(combo)
 
 
 if __name__ == '__main__':

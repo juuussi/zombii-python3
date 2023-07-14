@@ -33,6 +33,7 @@ import sys
 import tf
 
 from trigs import util
+import importlib
 
 
 class Movement(object):
@@ -228,14 +229,14 @@ class Run(object):
     try:
       sys.path = [path]
       try:
-        module = reload(__import__(basename))
-      except ImportError, e:
+        module = importlib.reload(__import__(basename))
+      except ImportError as e:
         tf.err('ImportError: %s' % e)
         return False
-      except NameError, e:
+      except NameError as e:
         tf.err('NameError: %s' % e)
         return False
-      except SyntaxError, e:
+      except SyntaxError as e:
         tf.err('Syntax error on line %d: %s' % (e.lineno, e.filename))
         return False
     finally:
@@ -300,10 +301,10 @@ class Run(object):
 
   def forward(self):
     if self._current is not None:
-      if self._current.next is None:
+      if self._current.__next__ is None:
         self._current = self._first
       else:
-        self._current = self._current.next
+        self._current = self._current.__next__
     return self._current
 
   def rewind(self):
@@ -325,7 +326,7 @@ class Run(object):
         tf.eval(
             '/say -d"party" -x -b -c"yellow" -- SKIPPING %d ROOM%s' % (
                 skip, 'S' if skip != 1 else ''))
-        for unused_i in xrange(skip - 1):
+        for unused_i in range(skip - 1):
           self.forward()
         self.execute(announce_only=True)
         self.forward()

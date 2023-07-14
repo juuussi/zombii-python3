@@ -4,21 +4,21 @@
 # then this file is NOT LOADED, it is only a stub for debugging.
 
 def err(arg):
-	print 'tf.err(%r)' % arg
+	print('tf.err(%r)' % arg)
 
 def eval(arg):
-	print 'tf.eval(%r)' % arg
+	print('tf.eval(%r)' % arg)
 	return ''
 
 def getvar(var, default=''):
-	print 'tf.getvar(%r, %r)' % (var, default)
+	print('tf.getvar(%r, %r)' % (var, default))
 	return default
 
 def out(arg):
-	print 'tf.out(%r)' % arg
+	print('tf.out(%r)' % arg)
 
 def send(text, world='<current>'):
-	print 'tf.send(%r, %r)' % (text, world)
+	print('tf.send(%r, %r)' % (text, world))
 
 def world():
 	return 'tf'

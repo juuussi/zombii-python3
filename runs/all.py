@@ -1,133 +1,134 @@
 # vim: syn=python
 
-import angarock
-reload(angarock)
+from . import angarock
+import importlib
+importlib.reload(angarock)
 
-import azynya
-reload(azynya)
+from . import azynya
+importlib.reload(azynya)
 
-import bard_guild
-reload(bard_guild)
+from . import bard_guild
+importlib.reload(bard_guild)
 
-import brownie_fields
-reload(brownie_fields)
+from . import brownie_fields
+importlib.reload(brownie_fields)
 
-import cantador
-reload(cantador)
+from . import cantador
+importlib.reload(cantador)
 
-import castle_greenlight
-reload(castle_greenlight)
+from . import castle_greenlight
+importlib.reload(castle_greenlight)
 
-import circus
-reload(circus)
+from . import circus
+importlib.reload(circus)
 
-import cleric_guild
-reload(cleric_guild)
+from . import cleric_guild
+importlib.reload(cleric_guild)
 
-import concordia
-reload(concordia)
+from . import concordia
+importlib.reload(concordia)
 
-import damorra_swamps
-reload(damorra_swamps)
+from . import damorra_swamps
+importlib.reload(damorra_swamps)
 
-import darkwater
-reload(darkwater)
+from . import darkwater
+importlib.reload(darkwater)
 
-import deep_forest_ranger_outpost
-reload(deep_forest_ranger_outpost)
+from . import deep_forest_ranger_outpost
+importlib.reload(deep_forest_ranger_outpost)
 
-import dragons
-reload(dragons)
+from . import dragons
+importlib.reload(dragons)
 
-import dryads
-reload(dryads)
+from . import dryads
+importlib.reload(dryads)
 
-import dusk
-reload(dusk)
+from . import dusk
+importlib.reload(dusk)
 
-import harbour
-reload(harbour)
+from . import harbour
+importlib.reload(harbour)
 
-import hemlock
-reload(hemlock)
+from . import hemlock
+importlib.reload(hemlock)
 
-import hillside
-reload(hillside)
+from . import hillside
+importlib.reload(hillside)
 
-import keep
-reload(keep)
+from . import keep
+importlib.reload(keep)
 
-import maester
-reload(maester)
+from . import maester
+importlib.reload(maester)
 
-import mage_guild
-reload(mage_guild)
+from . import mage_guild
+importlib.reload(mage_guild)
 
-import malbeth
-reload(malbeth)
+from . import malbeth
+importlib.reload(malbeth)
 
-import manor
-reload(manor)
+from . import manor
+importlib.reload(manor)
 
-import medo
-reload(medo)
+from . import medo
+importlib.reload(medo)
 
-import mellarnia
-reload(mellarnia)
+from . import mellarnia
+importlib.reload(mellarnia)
 
-import minas_tirith
-reload(minas_tirith)
+from . import minas_tirith
+importlib.reload(minas_tirith)
 
-import neckbreaker_desert
-reload(neckbreaker_desert)
+from . import neckbreaker_desert
+importlib.reload(neckbreaker_desert)
 
-import newbie_fields
-reload(newbie_fields)
+from . import newbie_fields
+importlib.reload(newbie_fields)
 
-import obizuth
-reload(obizuth)
+from . import obizuth
+importlib.reload(obizuth)
 
-import ranger_forest
-reload(ranger_forest)
+from . import ranger_forest
+importlib.reload(ranger_forest)
 
-import ravenloft
-reload(ravenloft)
+from . import ravenloft
+importlib.reload(ravenloft)
 
-import revelstone
-reload(revelstone)
+from . import revelstone
+importlib.reload(revelstone)
 
-import saurus
-reload(saurus)
+from . import saurus
+importlib.reload(saurus)
 
-import temple_of_burning_night
-reload(temple_of_burning_night)
+from . import temple_of_burning_night
+importlib.reload(temple_of_burning_night)
 
-import terray
-reload(terray)
+from . import terray
+importlib.reload(terray)
 
-import towanda
-reload(towanda)
+from . import towanda
+importlib.reload(towanda)
 
-import turre
-reload(turre)
+from . import turre
+importlib.reload(turre)
 
-import tyrir
-reload(tyrir)
+from . import tyrir
+importlib.reload(tyrir)
 
-import uhruul
-reload(uhruul)
+from . import uhruul
+importlib.reload(uhruul)
 
-import valley_of_mystery
-reload(valley_of_mystery)
+from . import valley_of_mystery
+importlib.reload(valley_of_mystery)
 
-import varalors
-reload(varalors)
+from . import varalors
+importlib.reload(varalors)
 
-import yellow_tower
-reload(yellow_tower)
+from . import yellow_tower
+importlib.reload(yellow_tower)
 
-import zombie_city
-reload(zombie_city)
+from . import zombie_city
+importlib.reload(zombie_city)
 
 
 CITY_SKIPS = (

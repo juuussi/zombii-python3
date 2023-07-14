@@ -1,19 +1,20 @@
 # vim: syn=python
 
-import abjurers_grove
-reload(abjurers_grove)
+from . import abjurers_grove
+import importlib
+importlib.reload(abjurers_grove)
 
-import isthmas
-reload(isthmas)
+from . import isthmas
+importlib.reload(isthmas)
 
-import mephala
-reload(mephala)
+from . import mephala
+importlib.reload(mephala)
 
-import pagoda
-reload(pagoda)
+from . import pagoda
+importlib.reload(pagoda)
 
-import shaolin
-reload(shaolin)
+from . import shaolin
+importlib.reload(shaolin)
 
 
 SKIPS = (

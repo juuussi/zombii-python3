@@ -124,7 +124,7 @@ def main():
   if not options.path:
     parser.error('-p --path is a required parameter')
 
-  print reverseString(options.path, options.separator)
+  print(reverseString(options.path, options.separator))
 
 
 if __name__ == '__main__':

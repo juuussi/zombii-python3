@@ -1,31 +1,32 @@
 # vim: ft=python
 
-import brownie_tree
-reload(brownie_tree)
+from . import brownie_tree
+import importlib
+importlib.reload(brownie_tree)
 
-import cantador_undead
-reload(cantador_undead)
+from . import cantador_undead
+importlib.reload(cantador_undead)
 
-import castle_greenlight
-reload(castle_greenlight)
+from . import castle_greenlight
+importlib.reload(castle_greenlight)
 
-import keep_undead
-reload(keep_undead)
+from . import keep_undead
+importlib.reload(keep_undead)
 
-import maester_undead
-reload(maester_undead)
+from . import maester_undead
+importlib.reload(maester_undead)
 
-import mage_guild_undead
-reload(mage_guild_undead)
+from . import mage_guild_undead
+importlib.reload(mage_guild_undead)
 
-import pyramid
-reload(pyramid)
+from . import pyramid
+importlib.reload(pyramid)
 
-import ravenkall_sewers
-reload(ravenkall_sewers)
+from . import ravenkall_sewers
+importlib.reload(ravenkall_sewers)
 
-import uhruul_undead
-reload(uhruul_undead)
+from . import uhruul_undead
+importlib.reload(uhruul_undead)
 
 
 CITY_SKIPS = (

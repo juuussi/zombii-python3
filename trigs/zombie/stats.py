@@ -93,7 +93,7 @@ class StatGroup(object):
   @property
   def totals(self):
     totals = {}
-    for key, stat in self._stats.iteritems():
+    for key, stat in self._stats.items():
       totals[key] = stat.total
     self._totals.update(totals)
     return self._totals
@@ -171,17 +171,17 @@ class StatGroup(object):
       return False
     try:
       fh = open(path, 'r')
-    except IOError, e:
+    except IOError as e:
       tf.err('IOError: %s' % e)
       return False
     try:
       totals = pickle.load(fh)
-      for key, total in totals.iteritems():
+      for key, total in totals.items():
         if key not in self._stats:
           continue
         self._stats[key].set(0, total)
       self._totals = totals
-    except IOError, e:
+    except IOError as e:
       tf.err('IOError: %s' % e)
       return False
     finally:
@@ -191,12 +191,12 @@ class StatGroup(object):
   def save(self, path):
     try:
       fh = open(path, 'w')
-    except IOError, e:
+    except IOError as e:
       tf.err('IOError: %s' % e)
       return False
     try:
       pickle.dump(self.totals, fh, pickle.HIGHEST_PROTOCOL)
-    except IOError, e:
+    except IOError as e:
       tf.err('IOError: %s' % e)
       return False
     finally:

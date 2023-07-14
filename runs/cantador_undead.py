@@ -1,7 +1,8 @@
 # vim: syn=python
 
-import ravenkall_sewers
-reload(ravenkall_sewers)
+from . import ravenkall_sewers
+import importlib
+importlib.reload(ravenkall_sewers)
 
 SKIPS = (
     ravenkall_sewers.FILE[0]['skip'] + 1)

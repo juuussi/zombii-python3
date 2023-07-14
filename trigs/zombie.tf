@@ -17,6 +17,7 @@
 
 /require textutil.tf
 /require lisp.tf
+/test version := substr('$LastChangedRevision: 1890 $', 22, -2)
 /python from trigs import mail
 /python reload(mail)
 /python from trigs import util
@@ -783,7 +784,8 @@
 /def fatigue_exhausted = 4
 /def fatigue_puuh = 5
 
-/test fatigue := ${fatigue_fully}
+; Commented out for Python3 compatibility testing
+;/test fatigue := ${fatigue_fully}
 /set fatigue_desc=Fully Rested
 
 /def -Fp5 -ag -mregexp -t'^(Fatigue changed: )?You feel fully rested\\.$' fatigue_0 = /update_fatigue -f${fatigue_fully} -d'Fully Rested'
@@ -913,7 +915,8 @@
 /def casting_speed_quick = 1
 /def casting_speed_very_quick = 2
 
-/test casting_speed := ${casting_speed_normal}
+; Commented out for Python3 compatibility testing
+;/test casting_speed := ${casting_speed_normal}
 
 /def -Fp5 -mregexp -t'^Your casting (mode|speed) is (now )?\'(.+)\'\\.$' casting_speed = \
   /if ({P3} =~ 'very slow') \

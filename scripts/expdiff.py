@@ -153,7 +153,7 @@ class Plaque(dict):
             worth = fromExpString(matcher.group('worth'))
             players[name] = Player(name, rank, level, worth)
       return cls(players)
-    except IOError, e:
+    except IOError as e:
       raise Error(e)
 
 
@@ -227,7 +227,7 @@ class DeltaPlaque(dict):
     deltas = {}
     oldLowest = LowestPlayer()
     newLowest = LowestPlayer()
-    for name, old in oldPlaque.iteritems():
+    for name, old in oldPlaque.items():
       if name in newPlaque:
         new = newPlaque[name]
         deltas[name] = Delta(old, new)
@@ -236,7 +236,7 @@ class DeltaPlaque(dict):
       if not oldLowest.rank or old < oldLowest:
         oldLowest.setWorth(old.worth)
         oldLowest.setRank(old.rank)
-    for name, new in newPlaque.iteritems():
+    for name, new in newPlaque.items():
       if name not in oldPlaque:
         deltas[name] = Delta(oldLowest, new)
       if not newLowest.rank or new < newLowest:
@@ -245,7 +245,7 @@ class DeltaPlaque(dict):
     return cls(deltas)
 
   def top(self, sorter, limit, reverse):
-    return sorted(self.values(), key=sorter, reverse=reverse)[0:limit]
+    return sorted(list(self.values()), key=sorter, reverse=reverse)[0:limit]
 
 
 SORTERS = {
@@ -287,7 +287,7 @@ def defineFlags():
       action='store',
       default='worth',
       dest='sort',
-      choices=SORTERS.keys(),
+      choices=list(SORTERS.keys()),
       metavar='SORT',
       type='choice',
       help='Column to sort results by.')
@@ -320,17 +320,17 @@ def main(options, args):
   try:
     old = Plaque.fromFile(options.old)
     new = Plaque.fromFile(options.new)
-  except Error, e:
+  except Error as e:
     logging.error('%s', e)
     return os.EX_DATAERR
 
   delta = DeltaPlaque.fromPlaques(old, new)
   sorter, reversed = SORTERS[options.sort]
 
-  print '%1s %-12s %5s %15s %9s' % ('?', 'Name', 'Rank', 'Worth', 'Percent')
-  print '----------------------------------------------'
+  print('%1s %-12s %5s %15s %9s' % ('?', 'Name', 'Rank', 'Worth', 'Percent'))
+  print('----------------------------------------------')
   for player in delta.top(sorter, options.limit, reversed ^ options.reverse):
-    print '%(status)1s %(name)-12s %(rank)+5d %(worth)15s %(percent)8.2f%%' % player
+    print('%(status)1s %(name)-12s %(rank)+5d %(worth)15s %(percent)8.2f%%' % player)
 
   return os.EX_OK
 

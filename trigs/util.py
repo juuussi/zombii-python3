@@ -9,7 +9,7 @@ __author__ = 'schrepfer'
 import hashlib
 import locale
 import re
-import urllib
+import urllib.request, urllib.parse, urllib.error
 
 def getPrettyTime(time, short=False):
   """Return the time in a pretty format.
@@ -137,10 +137,10 @@ def join(words, separator):
   return separator.join(words.split())
 
 def urlencode(url):
-  return urllib.quote(url)
+  return urllib.parse.quote(url)
 
 def urldecode(url):
-  return urllib.unquote(url)
+  return urllib.parse.unquote(url)
 
 def capitalize(words):
   return ' '.join([word.capitalize() for word in words.split()])

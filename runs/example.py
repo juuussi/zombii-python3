@@ -3,7 +3,7 @@
 # See dump.py in the scripts/ directory. It has features for working with these
 # runs.
 
-from align import *
+from .align import *
 
 FILE = [
   {
