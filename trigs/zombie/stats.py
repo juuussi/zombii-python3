@@ -170,12 +170,13 @@ class StatGroup(object):
       tf.err('Could not find file: %s' % path)
       return False
     try:
-      fh = open(path, 'r')
+      #fh = open(path, 'r')
+      fh = open(path, 'rb')
     except IOError as e:
       tf.err('IOError: %s' % e)
       return False
     try:
-      totals = pickle.load(fh)
+      totals = pickle.load(fh, encoding="bytes")
       for key, total in totals.items():
         if key not in self._stats:
           continue
@@ -190,12 +191,13 @@ class StatGroup(object):
 
   def save(self, path):
     try:
-      fh = open(path, 'w')
+      #fh = open(path, 'w')
+      fh = open(path, 'wb')
     except IOError as e:
       tf.err('IOError: %s' % e)
       return False
     try:
-      pickle.dump(self.totals, fh, pickle.HIGHEST_PROTOCOL)
+      pickle.dump(self.totals, fh, pickle.HIGHEST_PROTOCOL, encoding="bytes")
     except IOError as e:
       tf.err('IOError: %s' % e)
       return False
