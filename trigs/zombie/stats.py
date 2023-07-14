@@ -176,7 +176,7 @@ class StatGroup(object):
       tf.err('IOError: %s' % e)
       return False
     try:
-      totals = pickle.load(fh, encoding="bytes")
+      totals = pickle.load(fh)
       for key, total in totals.items():
         if key not in self._stats:
           continue
@@ -197,7 +197,7 @@ class StatGroup(object):
       tf.err('IOError: %s' % e)
       return False
     try:
-      pickle.dump(self.totals, fh, pickle.HIGHEST_PROTOCOL, encoding="bytes")
+      pickle.dump(self.totals, fh, pickle.HIGHEST_PROTOCOL)
     except IOError as e:
       tf.err('IOError: %s' % e)
       return False
