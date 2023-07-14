@@ -11,7 +11,8 @@
 /eval /require $[trigs_dir('zombie')]
 
 /python from trigs.zombie import stats
-/python reload(stats)
+/python import importlib
+/python importlib.reload(stats)
 
 ;;;;
 ;;

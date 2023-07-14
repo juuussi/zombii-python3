@@ -18,14 +18,15 @@
 /require textutil.tf
 /require lisp.tf
 /test version := substr('$LastChangedRevision: 1890 $', 22, -2)
+/python import importlib
 /python from trigs import mail
-/python reload(mail)
+/python importlib.reload(mail)
 /python from trigs import util
-/python reload(util)
+/python importlib.reload(util)
 /python from trigs.zombie import effects
-/python reload(effects)
+/python importlib.reload(effects)
 /python from trigs.zombie import runs
-/python reload(runs)
+/python importlib.reload(runs)
 
 ;;;;
 ;;
